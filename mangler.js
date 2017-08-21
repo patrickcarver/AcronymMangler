@@ -1,6 +1,17 @@
-let form = document.getElementById('mangler-form');
+class ManglerModel {
+	constructor() {}
+}
 
-form.addEventListener('submit', function(event){
-	event.preventDefault();
-	console.log("submitted");
-});
+class ManglerView {
+	constructor() {}
+}
+
+class ManglerController {
+	constructor() {}
+}
+
+class ManglerApp {
+	constructor() {}
+}
+
+var app = new ManglerApp();
