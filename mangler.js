@@ -1,17 +1,41 @@
 class ManglerModel {
-	constructor() {}
+	constructor() {
+
+	}
 }
 
 class ManglerView {
-	constructor() {}
+	constructor(viewElements) {
+		this.initElements(viewElements);
+	}
+
+	initElements(viewElements) {
+		const allowedElements = ['input', 'submit', 'results'];
+		
+		allowedElements.forEach(element => {  
+			this[element] = document.getElementById(element);
+		});
+	}
 }
 
 class ManglerController {
-	constructor() {}
+	constructor() {
+
+	}
 }
 
 class ManglerApp {
-	constructor() {}
+	constructor(viewElements) {
+		this.model = new ManglerModel();
+		this.view = new ManglerView(viewElements);
+		this.controller = new ManglerController();
+	}
 }
 
-var app = new ManglerApp();
+let viewElements = {
+	input: 'acronym-input',
+	submit: 'submit-button',
+	results: 'results'
+};
+
+var app = new ManglerApp(viewElements);
