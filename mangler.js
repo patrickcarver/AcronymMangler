@@ -6,20 +6,23 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
-	res.send(req.body);
+	res.send("hello");
 });
 
 app.post('/', (req, res) => {
 	const input = req.body.acronym;
-	const acronym = input.split('');
-	res.send(acronym);
+
+	const manglerApp = new ManglerApp();
+	const output = manglerApp.mangle(input);
+
+	res.send(output);
 });
 
-app.listen(3000, () => {
-	console.log("Example app listening on port 3000!");
+app.listen(3002, () => {
+	console.log("App listening on port 3000!");
 });
 
-/*class ManglerModel {
+class ManglerModel {
 	constructor() {
         this.adjectives = require('./lists/adjectives-2.json').adjectives;
         this.adverbs =    require('./lists/adverbs-2.json').adverbs;
@@ -28,6 +31,39 @@ app.listen(3000, () => {
 	}
 }
 
+class ManglerView {
+	constructor() {
+
+	}
+}
+
+class ManglerController {
+	constructor(model, view) {
+		this.model = model;
+		this.view = view;
+	}
+
+	mangle(input) {
+		const acronym = input.split('');
+		return acronym;
+	}
+}
+
+
+class ManglerApp {
+	constructor() {
+		this.model = 		new ManglerModel();
+		this.view = 		new ManglerView();
+		this.controller = 	new ManglerController(this.model, this.view);
+	}
+
+	mangle(input) {
+		return this.controller.mangle(input);
+	}
+}
+
+
+/*
 class ManglerView {
 	constructor(viewElements) {
 		this.initElements(viewElements);
@@ -65,7 +101,7 @@ class ManglerController {
 class ManglerApp {
 	constructor(viewElements) {
 		this.model = 		new ManglerModel();
-		this.view = 		new ManglerView(viewElements);
+		this.view = 		new ManglerView();
 		this.controller = 	new ManglerController(this.model, this.view);
 	}
 }
