@@ -1,6 +1,28 @@
-class ManglerModel {
-	constructor() {
+const express = require('express');
+const app = express();
+let bodyParser = require('body-parser');
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.get('/', (req, res) => {
+	res.send(req.body);
+});
+
+app.post('/', (req, res) => {
+	res.send(req.param('patrick'));
+});
+
+app.listen(3000, () => {
+	console.log("Example app listening on port 3000!");
+});
+
+/*class ManglerModel {
+	constructor() {
+        this.adjectives = require('./lists/adjectives-2.json').adjectives;
+        this.adverbs =    require('./lists/adverbs-2.json').adverbs;
+        this.nouns =      require('./lists/nouns-2.json').nouns;
+        this.verbs =      require('./lists/verbs-tense.json').verbs.map(v => v.present);
 	}
 }
 
@@ -17,7 +39,6 @@ class ManglerView {
 		allowedElements.forEach(element => {  
 			this[element] = document.getElementById(viewElements[element]);
 		});
-		
 	}
 
 	initEventListeners(submitFunction) {
@@ -53,4 +74,4 @@ let viewElements = {
 	results: 	'results'
 };
 
-var app = new ManglerApp(viewElements);
+*/
