@@ -10,7 +10,9 @@ app.get('/', (req, res) => {
 });
 
 app.post('/', (req, res) => {
-	res.send(req.param('patrick'));
+	const input = req.body.acronym;
+	const acronym = input.split('');
+	res.send(acronym);
 });
 
 app.listen(3000, () => {
